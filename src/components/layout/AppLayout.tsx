@@ -17,11 +17,13 @@ export default function AppLayout() {
     Conversation[]
   >([]);
 
-  // Local state for future UI feedback loading/error blocks, initialized to true
-  const [, setIsLoadingList] = useState<boolean>(true);
-  const [, setListError] = useState<string | null>(null);
-  const [, setIsLoadingDetails] = useState<boolean>(true);
-  const [, setDetailsError] = useState<string | null>(null);
+  // State flags for list loading & error responses
+  const [isLoadingList, setIsLoadingList] = useState<boolean>(true);
+  const [listError, setListError] = useState<string | null>(null);
+
+  // State flags for details loading & error responses
+  const [isLoadingDetails, setIsLoadingDetails] = useState<boolean>(false);
+  const [detailsError, setDetailsError] = useState<string | null>(null);
 
   // Derive the active conversation from the list of fully fetched details
   const activeConversation = useMemo(() => {
@@ -38,6 +40,51 @@ export default function AppLayout() {
     }
   };
 
+  // Click handler for retrying conversation summaries fetch
+  const handleRetryList = () => {
+    setIsLoadingList(true);
+    setListError(null);
+
+    fetchConversations()
+      .then((data) => {
+        setConversations(data);
+        if (data.length > 0) {
+          setSelectedId(data[0].id);
+          setIsLoadingDetails(true);
+        } else {
+          setSelectedId("");
+          setIsLoadingDetails(false);
+        }
+        setIsLoadingList(false);
+        setListError(null);
+      })
+      .catch((err) => {
+        setListError(err.message || "Failed to load conversation summaries.");
+        setIsLoadingList(false);
+      });
+  };
+
+  // Click handler for retrying conversation details fetch
+  const handleRetryDetails = () => {
+    if (!selectedId) return;
+    setIsLoadingDetails(true);
+    setDetailsError(null);
+
+    fetchConversationById(selectedId)
+      .then((data) => {
+        setConversationsDetails((prev) => {
+          const filtered = prev.filter((c) => c.id !== selectedId);
+          return [...filtered, data];
+        });
+        setIsLoadingDetails(false);
+        setDetailsError(null);
+      })
+      .catch((err) => {
+        setDetailsError(err.message || "Failed to load conversation details.");
+        setIsLoadingDetails(false);
+      });
+  };
+
   // Effect: Fetch list summaries on component mount
   useEffect(() => {
     const controller = new AbortController();
@@ -47,6 +94,10 @@ export default function AppLayout() {
         setConversations(data);
         if (data.length > 0) {
           setSelectedId(data[0].id);
+          setIsLoadingDetails(true);
+        } else {
+          setSelectedId("");
+          setIsLoadingDetails(false);
         }
         setIsLoadingList(false);
         setListError(null);
@@ -75,7 +126,10 @@ export default function AppLayout() {
 
     fetchConversationById(selectedId, controller.signal)
       .then((data) => {
-        setConversationsDetails((prev) => [...prev, data]);
+        setConversationsDetails((prev) => {
+          const filtered = prev.filter((c) => c.id !== selectedId);
+          return [...filtered, data];
+        });
         setIsLoadingDetails(false);
         setDetailsError(null);
       })
@@ -107,10 +161,18 @@ export default function AppLayout() {
             conversations={conversations}
             selectedId={selectedId}
             onSelect={handleSelect}
+            isLoading={isLoadingList}
+            error={listError}
+            onRetry={handleRetryList}
           />
 
           {/* Right-side Detail View Panel */}
-          <DetailsPanel conversation={activeConversation} />
+          <DetailsPanel
+            conversation={activeConversation}
+            isLoading={isLoadingDetails}
+            error={detailsError}
+            onRetry={handleRetryDetails}
+          />
         </div>
       </div>
     </div>

@@ -12,7 +12,6 @@ export interface ConversationCardProps {
 }
 
 export default function ConversationCard({
-  id,
   customerName,
   issueSummary,
   waitingTime,

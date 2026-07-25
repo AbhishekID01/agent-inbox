@@ -129,7 +129,7 @@ These were considered outside the assignment scope.
 ## ⚙️ Setup
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/AbhishekID01/agent-inbox.git
 
 cd agent-inbox
 
@@ -150,9 +150,9 @@ npm run lint
 
 ---
 
-## ⏱️ Time Spent
+## Time Spent
 
-Approximately **10–12 hours** spread across two evenings.
+Approximately 12 hours over two evenings, including planning, implementation, testing, and final polish.
 
 ---
 

@@ -22,8 +22,6 @@ export default function WorkspaceToolbar({
   selectedCategory,
   onCategoryChange,
   categories,
-  filteredCount,
-  totalCount,
   sortKey,
   onSortChange,
 }: WorkspaceToolbarProps) {

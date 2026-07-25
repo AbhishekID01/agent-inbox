@@ -4,7 +4,9 @@ import {
   AlertCircle,
   Clock,
   CheckCircle2,
-  Hash,
+  Flame,
+  ArrowUpCircle,
+  Bot,
   Settings,
 } from "lucide-react";
 
@@ -17,7 +19,7 @@ export default function Sidebar() {
           <div className="w-6 h-6 rounded-lg bg-brand flex items-center justify-center text-white">
             <Inbox className="w-3.5 h-3.5" />
           </div>
-          <span className="text-sm font-semibold text-txt-primary tracking-tight">
+          <span className="text-md font-semibold text-txt-primary tracking-tight">
             Agent Inbox
           </span>
         </div>
@@ -72,7 +74,7 @@ export default function Sidebar() {
                     <AlertCircle className="w-4 h-4 text-txt-muted" />
                     <span>Escalated</span>
                   </div>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-200/40 text-txt-muted min-w-[22px] text-center">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200/50 min-w-[22px] text-center">
                     3
                   </span>
                 </a>
@@ -88,7 +90,7 @@ export default function Sidebar() {
                     <Clock className="w-4 h-4 text-txt-muted" />
                     <span>Waiting</span>
                   </div>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-200/40 text-txt-muted min-w-[22px] text-center">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/50 min-w-[22px] text-center">
                     5
                   </span>
                 </a>
@@ -104,7 +106,7 @@ export default function Sidebar() {
                     <CheckCircle2 className="w-4 h-4 text-txt-muted" />
                     <span>Resolved Today</span>
                   </div>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-200/40 text-txt-muted min-w-[22px] text-center">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/50 min-w-[22px] text-center">
                     24
                   </span>
                 </a>
@@ -127,7 +129,7 @@ export default function Sidebar() {
                     href="#view-high"
                     className="flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-colors text-txt-secondary hover:text-txt-primary hover:bg-slate-200/60 border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
                   >
-                    <Hash className="w-4 h-4 mr-2.5 text-txt-muted" />
+                    <Flame className="w-4 h-4 mr-2.5 text-txt-muted" />
                     <span>High Priority</span>
                   </a>
                 </li>
@@ -138,7 +140,7 @@ export default function Sidebar() {
                     href="#view-escalations"
                     className="flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-colors text-txt-secondary hover:text-txt-primary hover:bg-slate-200/60 border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
                   >
-                    <Hash className="w-4 h-4 mr-2.5 text-txt-muted" />
+                    <ArrowUpCircle className="w-4 h-4 mr-2.5 text-txt-muted" />
                     <span>Customer Escalations</span>
                   </a>
                 </li>
@@ -149,7 +151,7 @@ export default function Sidebar() {
                     href="#view-ai-review"
                     className="flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-colors text-txt-secondary hover:text-txt-primary hover:bg-slate-200/60 border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
                   >
-                    <Hash className="w-4 h-4 mr-2.5 text-txt-muted" />
+                    <Bot className="w-4 h-4 mr-2.5 text-txt-muted" />
                     <span>AI Needs Review</span>
                   </a>
                 </li>

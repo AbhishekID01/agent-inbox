@@ -1,5 +1,3 @@
-import { Check } from "lucide-react";
-
 interface SuggestedActionsCardProps {
   suggestedActions: string[];
 }
@@ -16,19 +14,42 @@ export default function SuggestedActionsCard({
         </h3>
       </div>
 
-      {/* Checklist List */}
-      <ul className="space-y-2.5">
-        {suggestedActions.map((action, idx) => (
-          <li
-            key={idx}
-            className="flex items-start space-x-3 text-sm text-txt-secondary leading-relaxed select-none"
-          >
-            <div className="w-4.5 h-4.5 rounded-md bg-emerald-50 text-emerald-600 border border-emerald-200/50 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <Check className="w-3 h-3" />
-            </div>
-            <span>{action}</span>
-          </li>
-        ))}
+      {/* Ordered List */}
+      <ul className="space-y-3.5">
+        {suggestedActions.map((action, idx) => {
+          const isPrimary = idx === 0;
+          return (
+            <li
+              key={idx}
+              className="flex items-start space-x-3 text-sm text-txt-secondary leading-relaxed select-none"
+            >
+              {/* Index Number Badge */}
+              <div
+                className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5 border ${
+                  isPrimary
+                    ? "bg-brand/15 text-brand border-brand/25"
+                    : "bg-slate-50 text-txt-secondary border-slate-200/50"
+                }`}
+              >
+                {idx + 1}
+              </div>
+
+              {/* Action content block */}
+              {isPrimary ? (
+                <div className="flex flex-col space-y-1">
+                  <div className="flex items-center">
+                    <span className="text-[9px] font-bold text-brand bg-brand/10 border border-brand/20 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                      Primary Action
+                    </span>
+                  </div>
+                  <span className="font-semibold text-txt-primary">{action}</span>
+                </div>
+              ) : (
+                <span className="text-txt-secondary mt-0.5">{action}</span>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

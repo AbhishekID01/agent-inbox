@@ -1,8 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import Sidebar from "./Sidebar";
-import Header from "./Header";
 import MainContent from "./MainContent";
-import DetailsPanel from "./DetailsPanel";
 import {
   fetchConversations,
   fetchConversationById,
@@ -151,29 +149,19 @@ export default function AppLayout() {
 
       {/* Main View Area Container */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Header Panel */}
-        <Header />
-
-        {/* Workspace Columns Layout (Middle + Right) */}
-        <div className="flex-1 flex min-h-0 overflow-hidden">
-          {/* Central Conversation/Queue Content Panel */}
-          <MainContent
-            conversations={conversations}
-            selectedId={selectedId}
-            onSelect={handleSelect}
-            isLoading={isLoadingList}
-            error={listError}
-            onRetry={handleRetryList}
-          />
-
-          {/* Right-side Detail View Panel */}
-          <DetailsPanel
-            conversation={activeConversation}
-            isLoading={isLoadingDetails}
-            error={detailsError}
-            onRetry={handleRetryDetails}
-          />
-        </div>
+        {/* Central Workspace Content Panel containing Toolbar & Columns */}
+        <MainContent
+          conversations={conversations}
+          selectedId={selectedId}
+          onSelect={handleSelect}
+          isLoadingList={isLoadingList}
+          listError={listError}
+          onRetryList={handleRetryList}
+          activeConversation={activeConversation}
+          isLoadingDetails={isLoadingDetails}
+          detailsError={detailsError}
+          onRetryDetails={handleRetryDetails}
+        />
       </div>
     </div>
   );

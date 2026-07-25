@@ -1,75 +1,161 @@
-# React + TypeScript + Vite
+# 🚀 Agent Inbox
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A purpose-built conversation triage interface designed for CX agents handling AI-escalated customer conversations.
 
-Currently, two official plugins are available:
+Built as a Frontend Engineer Intern take-home assignment for Yellow.ai using React, TypeScript, Tailwind CSS, Vite, and MSW.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🎯 Product Thinking
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The brief focuses on helping CX agents quickly identify and act on the conversations that need human attention.
 
-## Expanding the ESLint configuration
+Instead of building a full messaging application, I prioritized rapid triage by surfacing:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- AI-generated conversation summaries
+- Priority indicators
+- Suggested actions
+- Search and filtering
+- Saved views
+- Customer context
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The goal was to help agents understand **what needs attention first**, rather than recreating a traditional chat application.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ✨ Features
 
-```
+- 📥 Conversation Inbox
+- 🔍 Search conversations
+- 🏷️ Priority & category filters
+- ⭐ Saved views
+- 🤖 AI Insight panel
+- 👤 Customer information
+- 📜 Conversation timeline
+- ⚡ Suggested actions
+- ⏳ Loading, empty, and error states
+- 🔄 Retry failed requests
+- ✍️ Mock write action with simulated API failure
+- ♿ Keyboard-accessible navigation
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- React 18
+- TypeScript (Strict Mode)
+- Vite
+- Tailwind CSS v4
+- MSW (Mock Service Worker)
+- Lucide React
+
+---
+
+## 🏗️ Architecture
 
 ```
+AppLayout
+├── Sidebar
+├── WorkspaceToolbar
+├── ConversationList
+│   └── ConversationCard
+└── DetailsPanel
+```
+
+State is managed using React hooks (`useState` and `useEffect`). Given the scope of the assignment, an external state management library was intentionally avoided.
+
+---
+
+## 📁 Folder Structure
+
+```text
+src/
+├── components/
+├── layout/
+├── ui/
+├── mocks/
+├── data/
+├── types/
+└── App.tsx
+```
+
+---
+
+## ♿ Accessibility
+
+- Keyboard navigation
+- Focus-visible states
+- Semantic HTML
+- Native form controls
+- Accessible loading and error feedback
+
+---
+
+## ⚖️ Trade-offs
+
+To stay within the suggested time budget, I intentionally did not implement:
+
+- Authentication
+- Real backend
+- Real-time updates
+- Reply sending
+- Notifications
+- Mobile-first responsive layout
+
+These were considered outside the assignment scope.
+
+---
+
+## 🚧 Known Limitations
+
+- Mock data only (MSW)
+- No persistence across page refreshes
+- Simulated API delays and failures
+- Single-page application
+
+---
+
+## 🔮 Future Improvements
+
+- Sticky reply composer
+- Keyboard shortcut (`/`) for search
+- Real backend integration
+- Real-time conversation updates
+- Virtualized conversation list
+- Dark mode
+
+---
+
+## ⚙️ Setup
+
+```bash
+git clone <repository-url>
+
+cd agent-inbox
+
+npm install
+
+npm run dev
+```
+
+---
+
+## 🧪 Available Scripts
+
+```bash
+npm run dev
+npm run build
+npm run lint
+```
+
+---
+
+## ⏱️ Time Spent
+
+Approximately **10–12 hours** spread across two evenings.
+
+---
+
+## 📄 AI Usage
+
+AI tools (ChatGPT and Antigravity IDE) were used to assist with brainstorming, implementation guidance, and code review. All code was reviewed, understood, and integrated manually.

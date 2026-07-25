@@ -1,4 +1,14 @@
-export default function CustomerInfoCard() {
+import { type CustomerInfo, type ConversationMetadata } from "../../types/conversation";
+
+interface CustomerInfoCardProps {
+  customerInfo: CustomerInfo;
+  metadata: ConversationMetadata;
+}
+
+export default function CustomerInfoCard({
+  customerInfo,
+  metadata,
+}: CustomerInfoCardProps) {
   return (
     <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs flex flex-col space-y-5">
       {/* Customer Info Section */}
@@ -11,14 +21,14 @@ export default function CustomerInfoCard() {
           <div className="flex flex-col">
             <dt className="text-xs text-txt-muted font-medium">Email</dt>
             <dd className="text-txt-primary truncate font-medium mt-0.5">
-              marcus.vance@acme.corp
+              {customerInfo.email}
             </dd>
           </div>
           {/* Company */}
           <div className="flex flex-col">
             <dt className="text-xs text-txt-muted font-medium">Company</dt>
             <dd className="text-txt-primary truncate font-medium mt-0.5">
-              Acme Corporation
+              {customerInfo.company}
             </dd>
           </div>
           {/* Plan */}
@@ -27,7 +37,7 @@ export default function CustomerInfoCard() {
               Subscription Plan
             </dt>
             <dd className="text-txt-primary truncate font-medium mt-0.5">
-              Growth (Standard)
+              {customerInfo.subscriptionPlan}
             </dd>
           </div>
           {/* Customer Since */}
@@ -36,7 +46,7 @@ export default function CustomerInfoCard() {
               Customer Since
             </dt>
             <dd className="text-txt-primary truncate font-medium mt-0.5">
-              Oct 12, 2024
+              {customerInfo.customerSince}
             </dd>
           </div>
         </dl>
@@ -54,21 +64,21 @@ export default function CustomerInfoCard() {
           <div className="flex flex-col">
             <dt className="text-xs text-txt-muted font-medium">Channel</dt>
             <dd className="text-txt-primary truncate font-medium mt-0.5">
-              Web Widget
+              {metadata.channel}
             </dd>
           </div>
           {/* Language */}
           <div className="flex flex-col">
             <dt className="text-xs text-txt-muted font-medium">Language</dt>
             <dd className="text-txt-primary truncate font-medium mt-0.5">
-              English (US)
+              {metadata.language}
             </dd>
           </div>
           {/* Assigned To */}
           <div className="flex flex-col">
             <dt className="text-xs text-txt-muted font-medium">Assigned To</dt>
             <dd className="text-txt-primary truncate font-medium mt-0.5">
-              Alex Morgan
+              {metadata.assignedTo}
             </dd>
           </div>
           {/* Last Activity */}
@@ -77,7 +87,7 @@ export default function CustomerInfoCard() {
               Last Activity
             </dt>
             <dd className="text-txt-primary truncate font-medium mt-0.5">
-              4m ago
+              {metadata.lastActivity}
             </dd>
           </div>
         </dl>

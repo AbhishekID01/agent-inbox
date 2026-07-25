@@ -1,13 +1,12 @@
 import { Check } from "lucide-react";
 
-export default function SuggestedActionsCard() {
-  const actions = [
-    "Verify stripe payment gateway logs",
-    "Offer manual invoice processing for upgrade",
-    "Escalate checkout telemetry to Billing Team",
-    "Request transaction ID from customer",
-  ];
+interface SuggestedActionsCardProps {
+  suggestedActions: string[];
+}
 
+export default function SuggestedActionsCard({
+  suggestedActions,
+}: SuggestedActionsCardProps) {
   return (
     <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs flex flex-col space-y-3.5">
       {/* Title Header */}
@@ -19,7 +18,7 @@ export default function SuggestedActionsCard() {
 
       {/* Checklist List */}
       <ul className="space-y-2.5">
-        {actions.map((action, idx) => (
+        {suggestedActions.map((action, idx) => (
           <li
             key={idx}
             className="flex items-start space-x-3 text-sm text-txt-secondary leading-relaxed select-none"

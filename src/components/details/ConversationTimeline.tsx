@@ -1,33 +1,13 @@
 import { Bot, User } from "lucide-react";
+import { type Message } from "../../types/conversation";
 
-export default function ConversationTimeline() {
-  const events = [
-    {
-      timestamp: "10:14 AM",
-      sender: "Marcus Vance",
-      role: "Customer",
-      message:
-        "Hi, I'm trying to upgrade our subscription from Growth to Enterprise, but every time I click checkout, the screen loads for a minute and then says 'ERR_PAYMENT_FAILED'. Can you please help? We have a product launch tomorrow and need the higher limits.",
-      isAI: false,
-    },
-    {
-      timestamp: "10:15 AM",
-      sender: "AI Assistant",
-      role: "AI Assistant",
-      message:
-        "I understand this is urgent, Marcus. Let me analyze the checkout logs. I see repeated failed charges under your account 'Acme Corporation'. This appears to be a gateway timeout. I am escalating this to a human agent immediately to verify your payment status and offer manual activation.",
-      isAI: true,
-    },
-    {
-      timestamp: "10:17 AM",
-      sender: "Marcus Vance",
-      role: "Customer",
-      message:
-        "Thanks, please hurry. I have my corporate card ready if we need to pay via manual invoice. Let me know what information you need.",
-      isAI: false,
-    },
-  ];
+interface ConversationTimelineProps {
+  timeline: Message[];
+}
 
+export default function ConversationTimeline({
+  timeline,
+}: ConversationTimelineProps) {
   return (
     <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs flex flex-col space-y-4">
       {/* Header */}
@@ -39,7 +19,7 @@ export default function ConversationTimeline() {
 
       {/* Timeline List Container */}
       <div className="relative border-l border-slate-100 pl-6 ml-3.5 space-y-6">
-        {events.map((event, idx) => (
+        {timeline.map((event, idx) => (
           <div key={idx} className="relative">
             {/* Timeline Node Icon */}
             <div

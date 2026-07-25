@@ -7,6 +7,7 @@ export interface ConversationCardProps {
   aiTag: string;
   isActive?: boolean;
   isUnread?: boolean;
+  onSelect?: () => void;
 }
 
 export default function ConversationCard({
@@ -18,6 +19,7 @@ export default function ConversationCard({
   aiTag,
   isActive = false,
   isUnread = false,
+  onSelect,
 }: ConversationCardProps) {
   // Priority styling classes mapping
   const priorityStyles = {
@@ -29,9 +31,19 @@ export default function ConversationCard({
 
   const priorityLabel = priority.charAt(0).toUpperCase() + priority.slice(1);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onSelect?.();
+    }
+  };
+
   return (
     <article
       tabIndex={0}
+      onClick={onSelect}
+      onKeyDown={handleKeyDown}
+      aria-selected={isActive}
       className={`relative p-4 rounded-2xl border transition-all duration-200 select-none cursor-pointer flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 ${
         isActive
           ? "border-brand bg-brand/[0.02] ring-1 ring-brand"

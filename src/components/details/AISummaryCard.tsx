@@ -1,6 +1,16 @@
 import { Sparkles, BarChart2, ShieldAlert } from "lucide-react";
 
-export default function AISummaryCard() {
+interface AISummaryCardProps {
+  aiSummary: string;
+  aiConfidence: number;
+  escalationReason: string;
+}
+
+export default function AISummaryCard({
+  aiSummary,
+  aiConfidence,
+  escalationReason,
+}: AISummaryCardProps) {
   return (
     <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs flex flex-col space-y-4">
       {/* Title Header */}
@@ -15,7 +25,7 @@ export default function AISummaryCard() {
 
       {/* AI Summary Text */}
       <p className="text-sm text-txt-secondary leading-relaxed font-normal">
-        Customer is trying to upgrade their subscription from Growth to Enterprise. The payment fails repeatedly at checkout with error code ERR_PAYMENT_FAILED. Customer is highly frustrated due to upcoming project launch.
+        {aiSummary}
       </p>
 
       {/* Sub-grid with Confidence and Escalation details */}
@@ -27,7 +37,7 @@ export default function AISummaryCard() {
             <span>AI Confidence</span>
           </span>
           <span className="text-sm font-semibold text-txt-primary">
-            94% (High)
+            {aiConfidence}% ({aiConfidence >= 90 ? "High" : aiConfidence >= 70 ? "Medium" : "Low"})
           </span>
         </div>
 
@@ -38,7 +48,7 @@ export default function AISummaryCard() {
             <span>Escalation Reason</span>
           </span>
           <span className="text-sm font-semibold text-txt-primary truncate">
-            Gateway Timeout / Checkout Loop
+            {escalationReason}
           </span>
         </div>
       </div>

@@ -1,10 +1,14 @@
-export default function ReplyComposer() {
+interface ReplyComposerProps {
+  customerName: string;
+}
+
+export default function ReplyComposer({ customerName }: ReplyComposerProps) {
   return (
     <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col space-y-3">
       {/* Input Textarea */}
       <textarea
         rows={4}
-        placeholder="Type a reply to Marcus..."
+        placeholder={`Type a reply to ${customerName}...`}
         className="w-full resize-none border border-slate-200/60 rounded-xl p-3.5 text-sm text-txt-primary placeholder:text-txt-muted focus-visible:outline-none focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/20 transition-all"
         readOnly
       />

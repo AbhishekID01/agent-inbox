@@ -1,13 +1,15 @@
 import ConversationListHeader from "./ConversationListHeader";
 import ConversationCard from "./ConversationCard";
-import { STATIC_CONVERSATIONS } from "../../data/conversations";
+import { type ConversationSummary } from "../../api/conversations";
 
 interface ConversationListProps {
+  conversations: ConversationSummary[];
   selectedId: string;
   onSelect: (id: string) => void;
 }
 
 export default function ConversationList({
+  conversations,
   selectedId,
   onSelect,
 }: ConversationListProps) {
@@ -19,7 +21,7 @@ export default function ConversationList({
       {/* Cards List Container */}
       <div className="flex-1 overflow-y-auto mt-6 pr-1 -mr-1">
         <ul className="space-y-3 pb-6" aria-label="Conversation list">
-          {STATIC_CONVERSATIONS.map((conversation) => (
+          {conversations.map((conversation) => (
             <li key={conversation.id}>
               <ConversationCard
                 customerName={conversation.customerName}
